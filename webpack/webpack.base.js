@@ -1,9 +1,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 const path = require('path');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-
-const extractCSS = new ExtractTextPlugin({ filename: 'bundle.css' });
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = options => ({
   devtool: options.devtool,
@@ -21,18 +19,16 @@ module.exports = options => ({
       },
       {
         test: /\.s?css$/,
-        use: extractCSS.extract({
-          fallback: 'style-loader',
-          use: [{
-            loader: 'css-loader',
-          }, {
-            loader: 'sass-loader',
-            options: {
-              includePaths: [path.resolve(__dirname, '../app/theme')],
-            },
+        use: [{
+          loader: MiniCssExtractPlugin.loader,
+        },
+        'css-loader',
+        {
+          loader: 'sass-loader',
+          options: {
+            includePaths: [path.resolve(__dirname, '../app/theme')],
           },
-          ],
-        }),
+        }],
       },
       {
         test: /\.png$/,
@@ -59,7 +55,7 @@ module.exports = options => ({
     ],
   },
   plugins: options.plugins.concat([
-    extractCSS,
+    new MiniCssExtractPlugin(),
     new HtmlWebpackPlugin({
       template: './app/index.html',
       inject: true,
