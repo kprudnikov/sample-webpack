@@ -1,0 +1,83 @@
+{
+    "name": "sample-webpack-config",
+    "version": "1.0.0",
+    "description": "Sample webpack config",
+    "main": "index.js",
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/kprudnikov/sample-webpack.git"
+    },
+    "author": "kprudnikov",
+    "license": "MIT",
+    "bugs": {
+      "url": "https://github.com/kprudnikov/sample-webpack/issues"
+    },
+    "homepage": "https://github.com/kprudnikov/sample-webpack#readme",
+    "scripts": {
+      "start": "npm run start.api | npm run start.client",
+      "start.client": "webpack-dev-server --config ./webpack/webpack.dev.js",
+      "start.api": "node ./server",
+      "build": "webpack --config ./webpack/webpack.prod.js",
+      "precommit": "npm run lint",
+      "prepush": "npm test",
+      "pretest": "npm run lint",
+      "lint": "eslint -- .",
+      "test": "jest",
+      "coverage": "jest --coverage"
+    },
+    "jest": {
+      "moduleNameMapper": {
+        ".scss$": "<rootDir>/app/testsSetup/scss_stub.js",
+        "component.+svg$": "<rootDir>/app/testsSetup/svg-mock.js",
+        "recipe-mock\\.png$": "<rootDir>/app/testsSetup/image-stub.js",
+        "\\.(jpg|jpeg|png|svg)$": "<rootDir>/app/testsSetup/file-mock.js"
+      },
+      "setupTestFrameworkScriptFile": "<rootDir>/app/testsSetup/jsdom.js"
+    },
+    "devDependencies": {
+      "babel-core": "^6.25.0",
+      "babel-loader": "^7.0.0",
+      "babel-plugin-transform-react-jsx": "^6.24.1",
+      "babel-polyfill": "^6.26.0",
+      "babel-preset-env": "^1.5.2",
+      "babel-preset-stage-0": "^6.24.1",
+      "chai": "^4.1.2",
+      "css-loader": "^0.28.11",
+      "enzyme": "^3.3.0",
+      "enzyme-adapter-react-16": "^1.1.1",
+      "eslint": "^4.0.0",
+      "eslint-config-airbnb": "^16.1.0",
+      "eslint-plugin-import": "^2.9.0",
+      "eslint-plugin-jsx-a11y": "^6.0.3",
+      "eslint-plugin-react": "^7.7.0",
+      "express": "^4.16.3",
+      "extract-text-webpack-plugin": "^3.0.2",
+      "file-loader": "^1.1.11",
+      "html-webpack-plugin": "^2.28.0",
+      "husky": "^0.14.3",
+      "jest": "^22.4.0",
+      "jsdom": "^11.6.2",
+      "node-sass": "^4.7.2",
+      "react-svg-loader": "^2.1.0",
+      "resolve-url-loader": "^2.3.0",
+      "sass-loader": "^6.0.7",
+      "style-loader": "^0.18.2",
+      "webpack": "^3.11.0",
+      "webpack-cli": "^2.0.0",
+      "webpack-dev-server": "^2.4.5"
+    },
+    "dependencies": {
+      "history": "^4.7.2",
+      "immutable": "^3.8.2",
+      "prop-types": "^15.6.1",
+      "react": "^16.2.0",
+      "react-dom": "^16.2.0",
+      "react-redux": "^5.0.7",
+      "react-router": "^4.2.0",
+      "react-router-redux": "^4.0.8",
+      "redux": "^3.7.2",
+      "redux-immutable": "^4.0.0",
+      "redux-saga": "^0.16.0",
+      "reselect": "^3.0.1"
+    }
+  }
